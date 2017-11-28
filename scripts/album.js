@@ -29,6 +29,24 @@ var albumMarconi = {
   ]
 };
 
+var albumBandAnna = {
+  title: 'Self-titled',
+  artist: 'Band Anna',
+  label: 'Indie Rock',
+  year: '2011',
+  albumArtUrl: 'assets/images/album_covers/07.png',
+  songs: [
+    {title: 'Green Pomegranates', duration: '3:56'},
+    {title: 'Yellow Tubes', duration: '1:28'},
+    {title: 'Airport Delay', duration: '9:28'},
+    {title: 'Sasquatch', duration: '4:15'},
+    {title: 'People Watch', duration: '2:52'},
+    {title: 'Labradoodle', duration: '1:37'}
+  ]
+};
+
+var allAlbums = [albumPicasso, albumMarconi, albumBandAnna]
+
 var createSongRow = function(songNumber, songName, songLength) {
   var template =
     '<tr class="album-view-song-item">'
@@ -65,3 +83,19 @@ var setCurrentAlbum = function(album) {
 window.onload = function() {
   setCurrentAlbum(albumPicasso);
 };
+
+var allAlbumsIndex = allAlbums.indexOf(albumPicasso);
+
+document.getElementsByClassName('album-cover-art')[0].addEventListener("click", function() {
+//change the album to next
+  allAlbumsIndex = allAlbumsIndex + 1;
+
+  if (allAlbumsIndex < allAlbums.length) {
+    setCurrentAlbum(allAlbums[allAlbumsIndex]);
+  }
+  else {
+    setCurrentAlbum(allAlbums[0]);
+    allAlbumsIndex = 0;
+  }
+
+});
